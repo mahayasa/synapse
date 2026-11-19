@@ -28,6 +28,16 @@ Few-shot context (`few_shot:`) is sent to the LLM provider.
 - Use `exclude_columns` to drop direct identifiers (names, record numbers, addresses, dates of birth, emails, phone numbers).
 - Never send real patient records, genomic data of individuals or GPS tracks to a hosted model without the approvals your institution requires.
 
+## Example data pasted or uploaded in a chat
+
+When you paste a table or name a file in a Claude session (see [example-data.md](example-data.md)), the data becomes part of the conversation and is sent to Anthropic. The model sees the raw rows, so the stats-only guard of the API backends does not apply.
+
+- Remove direct identifiers first (names, emails, phone numbers, addresses, record numbers, dates of birth, GPS). `profile_data.py --exclude` drops columns, and its name-based warning is only a heuristic.
+- Use only data you are allowed to share; for patient, genomic or location data follow your institution's rules.
+- The skill asks Claude to confirm this with you, never to hard-code or copy sample rows, and to save pasted text under the git-ignored `data/real/`.
+- For sensitive data prefer a local model with `stats` mode, or train a model locally on the data (see [training.md](training.md)).
+- Check the evaluator's exact-copy and distance scores when there is enough data to compute them.
+
 ## Models trained on real data
 
 - Saved models (`.pkl`) are pickles. **Loading a pickle can run arbitrary code**; load only models you trained yourself, never ones from untrusted sources.

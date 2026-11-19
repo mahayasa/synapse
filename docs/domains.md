@@ -22,8 +22,10 @@ Each profile has the same sections: Entities, Realism features, Sanity rules, Ty
 | `rules` | No | No | Profile ignored; fixed script output |
 | LLM with `domain_profile` only | Yes | No | Follows the profile; may not match your data |
 | LLM with `few_shot` only | No | Yes | Matches your data |
-| LLM with both | Yes | Yes | Risky: no precedence rule today, the model may blend them |
+| LLM with both | Yes | Yes | The prompt says the real-data reference wins and asks for a list of differences; `run.py` warns. Still an instruction to the model, not enforced by code |
 | Evaluator | No | Yes | A mismatch shows up as low fidelity, not an error |
+
+In a Claude session the same applies to example data you paste or upload: it wins over the profile (see [example-data.md](example-data.md)).
 
 The sanity rules in a profile are guidance text for the model and for Claude; they are not enforced by code. Only the config's `validation` checks and the evaluator actually run.
 

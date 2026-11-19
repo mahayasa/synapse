@@ -51,6 +51,16 @@ The model writes a generator script, Synapse runs and validates it, and any erro
 
 For a local model, use `configs/openai_compat.yaml` with an Ollama or vLLM server and no key. See [backends.md](backends.md).
 
+## Use your own example data
+
+Paste a table into a Claude session or give a CSV, TSV or XLSX path, or profile it yourself:
+
+```bash
+pip install openpyxl    # only for .xlsx
+python profile_data.py data/real/my_patients.xlsx --exclude name email
+```n
+See [example-data.md](example-data.md) for the profile, the holdout evaluation workflow and the privacy rules.
+
 ## Train a classical model on real data
 
 ```bash

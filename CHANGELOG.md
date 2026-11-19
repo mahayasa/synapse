@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.0 (2026-11-19) - few-shot from example data
+
+### Added
+- `profile_data.py`: profile example data from CSV, TSV, pasted text (markdown, tab, comma, semicolon, pipe, aligned) or XLSX (one table per sheet); prints column summaries, likely keys and foreign keys, derived columns, strong correlations, and warnings about sample size, mostly-empty columns and possibly personal columns; `--export` and `--holdout` write normalised CSVs with a held-out part for evaluation.
+- `backends/dataio.py` reader; the `few_shot` config now accepts a folder or a single file, including XLSX.
+- `SKILL.md` workflow for example data given in a session: privacy confirmation, few-shot not copying, the sample wins over the domain profile, honest size limits, holdout evaluation.
+- LLM prompts state that the real-data reference wins over the domain profile; `run.py` warns when both are set and records it in `run_log.json`.
+- Flags and small integer codes are summarised as category mixes (class balance is visible).
+- `docs/example-data.md`; `openpyxl` as an optional dependency; 12 new offline tests (38 in total).
+
+### Known limitations
+- Tested only with constructed samples, not real datasets; legacy `.xls` is not supported.
+
 ## 0.1.0 (2026-11-19) - initial release
 
 First public version.

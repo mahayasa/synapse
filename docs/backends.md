@@ -98,13 +98,14 @@ few_shot:
   # acknowledge_external_data: true   # required for rows mode with a hosted model
 ```
 
-- `stats` sends per-column aggregates: types, quantiles, top categories, masked formats for identifier-like columns.
+- `real_data` is a folder or a single file; CSV, TSV, pasted-text and XLSX are read (each sheet is a table). See [example-data.md](example-data.md).
+- `stats` sends per-column aggregates: types, quantiles, top categories (small integer codes and flags are shown as category mixes), masked formats for identifier-like columns.
 - `rows` sends real example rows. With a hosted model it refuses to run unless `acknowledge_external_data: true`. A `localhost` `base_url` needs no flag.
 - Everything built here is sent to the model provider. See [security-and-privacy.md](security-and-privacy.md).
 
 ### Real data versus the domain profile
 
-If both `domain_profile` and `few_shot` are set, the prompt contains both and there is currently no precedence rule, so a model may blend them. When your real data differs from the profile, drop `domain_profile` or use the `sdv` backend. See [domains.md](domains.md).
+If both `domain_profile` and `few_shot` are set, the prompt tells the model that the real-data reference wins where they disagree and asks it to list the differences in a comment at the top of the script; `run.py` also prints a warning and records it in `run_log.json` (`warnings`). This is an instruction to the model, not something code enforces. When your real data differs a lot from the profile, drop `domain_profile` or use the `sdv` backend. See [domains.md](domains.md).
 
 ## `sdv`
 

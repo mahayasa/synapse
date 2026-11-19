@@ -64,6 +64,8 @@ def main() -> None:
     except (ConfigError, BudgetExceeded) as e:
         sys.exit(f"error: {e}")
     print(json.dumps(log, indent=2, default=str))
+    for w in log.get("warnings") or []:
+        print(f"warning: {w}", file=sys.stderr)
     sys.exit(0 if log["validation_passed"] else 1)
 
 

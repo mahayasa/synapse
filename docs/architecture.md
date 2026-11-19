@@ -38,7 +38,9 @@ flowchart TD
 | `backends/common.py` | API-key lookup, secret scrubbing, running generated scripts, running validation, loading profiles |
 | `backends/rules_backend.py` | Runs a seeded generator script |
 | `backends/llm.py` | `LLMClient` adapters (Anthropic, OpenAI-compatible), budget-guarded calls, write-generator loop, direct-rows mode |
-| `backends/fewshot.py` | Builds the few-shot summary of real data with privacy guards |
+| `backends/fewshot.py` | Builds the few-shot summary of real data with privacy guards; also provides the column summaries used by `profile_data.py` |
+| `backends/dataio.py` | Reads example data (CSV, TSV, pasted text, markdown tables, XLSX) into tables |
+| `profile_data.py` | Profiles example data (keys, foreign keys, derived columns, correlations, warnings) and exports normalised CSVs with an optional holdout |
 | `backends/sdv_backend.py` | Train, save, sample SDV models; rebuild keys, foreign keys and derived columns; held-out evaluation |
 | `evaluation/metrics.py` | Metric implementations |
 | `evaluation/report.py` | Per-table evaluation, composite score, markdown report, leaderboard |

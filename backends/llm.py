@@ -32,6 +32,8 @@ Requirements:
 - Use fake identifiers only; emails end with @example.com.
 - If a "Real-data reference" is given, match its distributions, ranges, category mixes and ID
   formats, but never copy example rows or reproduce real identifiers.
+- If a domain profile and a real-data reference disagree (columns, units, prevalence, ranges),
+  the real-data reference wins; list each difference in a comment at the top of the script.
 Reply with ONE fenced python code block and nothing else."""
 
 ROWS_SYSTEM = """You generate synthetic CSV data. Reply with ONLY the CSV (header line first),
@@ -99,6 +101,11 @@ class LLMBackend(Backend):
         if not cfg.get("model"):
             raise ConfigError("`model` is required for LLM backends")
         self.few_shot = build_few_shot(cfg)      # raises early on unsafe/bad few_shot config
+        self.warnings: list[str] = []
+        if self.few_shot and cfg.get("domain_profile"):
+            self.warnings.append("both domain_profile and few_shot are set: the model is told the "
+                                 "real-data reference wins where they disagree; consider dropping "
+                                 "domain_profile if your data differs from it")
         self.client = client or self.make_client(cfg)
         self.tokens_in = self.tokens_out = self.calls = 0
         self.max_calls = int(cfg.get("max_calls", 12))
@@ -135,7 +142,7 @@ class LLMBackend(Backend):
             raise ConfigError(f"unknown mode {mode!r} (write_generator | direct_rows)")
         return {"model": self.cfg["model"], "mode": mode, "llm_calls": self.calls,
                 "tokens_in": self.tokens_in, "tokens_out": self.tokens_out,
-                "llm_seconds": round(time.time() - t0, 1), **extra}
+                "llm_seconds": round(time.time() - t0, 1), "warnings": self.warnings, **extra}
 
     def _task_text(self) -> str:
         c = self.cfg
