@@ -2,7 +2,7 @@
   <img src="assets/synapse-icon.png" alt="Synapse icon" width="140">
 </p>
 
-# Synapse: A Tabular Synthetic Data agent
+<h1 align="center">Synapse: A Tabular Synthetic Data Agent</h1>
 
 **Synthetic data agent for health and biomedical research (EHR, RNA-seq, wearables).** Synapse is a config-driven agent skill and Python toolkit that generates, trains, validates and evaluates synthetic datasets, and lets you swap the generator between rule-based code, large language models and classical machine-learning models (CTGAN, TVAE, Gaussian copula) so they can be benchmarked against each other.
 
