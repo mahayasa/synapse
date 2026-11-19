@@ -1,0 +1,4 @@
+# Optional: install only the backends you use.
+anthropic    # backend: anthropic_llm
+openai       # backends: openai_llm, openai_compat
+sdv          # backend: sdv (CTGAN, TVAE, Gaussian copula); pulls in PyTorch. Tested with sdv 2.2.0

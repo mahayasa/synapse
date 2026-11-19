@@ -1,0 +1,18 @@
+# Any OpenAI-compatible endpoint: OpenAI itself, a local Ollama/vLLM server, OpenRouter, ...
+# Hosted: set the variable named below. Local server: set no_api_key: true.
+# A local model is the safer choice for sensitive health or biomedical reference data.
+backend: openai_compat
+mode: write_generator
+model: llama3.1:70b                      # whatever your server calls the model
+base_url: http://localhost:11434/v1      # Ollama default. Omit for api.openai.com.
+no_api_key: true                         # local only; remove and set api_key_env for hosted
+# api_key_env: OPENAI_API_KEY            # NAME of the variable, never the key itself
+# max_tokens_param: max_completion_tokens   # some newer OpenAI models need this
+domain: exercise
+domain_profile: exercise_wearables
+description: 50 users, 90 days, runs/rides/walks, HR following pace and grade, daily steps and sleep, sensor dropouts flagged.
+seed: 42
+rows: 3000                               # workouts
+validation:
+  pk: [users=user_id, workouts=workout_id]
+  fk: [workouts.user_id=users.user_id]

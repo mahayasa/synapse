@@ -1,0 +1,25 @@
+# secrets
+.env
+*.env
+
+# run outputs and trained models
+out/
+models/
+*.pkl
+
+# real data: never commit
+data/real/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

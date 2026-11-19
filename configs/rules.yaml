@@ -1,0 +1,17 @@
+# Rule-based backend: no model, no API key.
+backend: rules
+generator: scripts/generator_template.py   # any script with --seed, <rows_arg>, --out
+rows_arg: --orders
+seed: 42
+rows: 5000
+validation:
+  pk: [customers=customer_id, products=product_id, orders=order_id]
+  fk: [orders.customer_id=customers.customer_id, orders.product_id=products.product_id]
+  range: ["orders.total=0:"]
+  notnull: [orders.order_id]
+# Optional: score the output against REAL data (fidelity, utility, privacy, coverage).
+# evaluation:
+#   real_data: data/real                 # folder of real CSVs, same table names
+#   exclude_columns: []                  # extra columns to ignore (ids are automatic)
+#   utility: {table: orders, target: total, task: regression}   # optional TSTR test
+#   seed: 0

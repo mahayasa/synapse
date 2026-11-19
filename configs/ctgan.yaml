@@ -1,0 +1,23 @@
+# Conventional ML model fitted on REAL tabular data (e.g. a diabetes classification table).   pip install sdv
+#   1) python train.py --config configs/ctgan.yaml     (fit once, save to model_dir)
+#   2) python run.py   --config configs/ctgan.yaml     (sample any size from the saved model)
+# Suits flat tables and tabular parts of EHR data. Not suited to gene x sample matrices (p >> n)
+# or sensor time series: use a rules/LLM generator for those (see references/).
+backend: sdv
+conventional:
+  algorithm: ctgan              # gaussian_copula | ctgan | tvae
+  real_data: data/real          # folder of real CSVs you are allowed to use (git-ignored)
+  model_dir: models/ctgan       # saved models; run.py loads these, trains if missing
+  params: {epochs: 300, batch_size: 500}   # passed to the synthesizer
+  holdout_fraction: 0.2         # scored on held-out real rows after training
+  primary_keys: {patients: patient_id}     # rebuilt, not modelled
+  # foreign_keys: [encounters.patient_id=patients.patient_id]   # drawn from parent keys
+  # derived: {patients.bmi: "weight_kg / (height_cm / 100) ** 2"}  # recomputed after sampling
+seed: 42
+rows: 10000                     # size of the largest fact table
+validation:
+  pk: [patients=patient_id]
+evaluation:                     # applied to the held-out check and to run.py output
+  real_data: data/real
+  exclude_columns: []           # e.g. name, mrn, address (identifier columns; *_id is automatic)
+  utility: {table: patients, target: outcome, task: classification}

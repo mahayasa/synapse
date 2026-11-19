@@ -1,0 +1,25 @@
+# Claude writes a generator, guided by a few-shot summary of REAL data.
+# PRIVACY: the reference below is sent to the model provider. For patient, genomic or GPS data use
+# `stats` (aggregates only) or a local model (see openai_compat.yaml). `rows` mode with a hosted model
+# needs the acknowledgement flag and should only be used if you are allowed to share those rows.
+backend: anthropic_llm
+mode: write_generator
+model: claude-sonnet-5-5
+api_key_env: ANTHROPIC_API_KEY
+domain: health
+domain_profile: health_ehr
+description: Diabetes classification table, one row per patient, about 12% positive.
+seed: 42
+rows: 5000
+few_shot:
+  real_data: data/real              # folder of real CSVs (git-ignored)
+  mode: stats                       # stats | rows
+  rows_per_table: 5                 # used when mode: rows
+  exclude_columns: [name, mrn, address, birth_date, email, phone]   # drop direct identifiers
+  max_chars: 6000
+  # acknowledge_external_data: true # required for mode: rows with a hosted model
+validation:
+  pk: [patients=patient_id]
+evaluation:
+  real_data: data/real
+  utility: {table: patients, target: outcome, task: classification}

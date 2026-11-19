@@ -1,0 +1,16 @@
+# LLM emits CSV rows directly (benchmark "arm A"). Small tables only; not reproducible.
+backend: anthropic_llm
+mode: direct_rows
+model: claude-haiku-5-5
+api_key_env: ANTHROPIC_API_KEY
+domain: health
+domain_profile: health_ehr
+rows_per_call: 40
+max_calls: 30
+tables:
+  - {name: patients, rows: 60, columns: "patient_id (P0001..), age, sex (F/M), bmi, family_history (0-1 score), smoker (0/1), hba1c, glucose_mg_dl, outcome (0/1 diabetes; depends on hba1c and glucose)"}
+  - {name: visits, rows: 120, columns: "visit_id, patient_id (from patients), visit_date (2025-01..2025-12), sbp, dbp, heart_rate"}
+seed: 42
+validation:
+  pk: [patients=patient_id, visits=visit_id]
+  fk: [visits.patient_id=patients.patient_id]

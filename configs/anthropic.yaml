@@ -1,0 +1,20 @@
+# Claude writes a seeded generator, we run + validate + repair.
+# Set the key in your shell first:   $env:ANTHROPIC_API_KEY = "..."   (PowerShell)
+backend: anthropic_llm
+mode: write_generator            # or direct_rows (see configs/direct_rows.yaml)
+model: claude-sonnet-5-5         # claude-fable-5-2 | claude-opus-5-5 | claude-haiku-5-5
+api_key_env: ANTHROPIC_API_KEY   # NAME of the variable, never the key itself
+domain: health                   # health | biomedical | exercise
+domain_profile: health_ehr       # loads references/health_ehr.md (or biomedical_omics, exercise_wearables)
+description: >
+  Type 2 diabetes EHR: 2000 adult patients, 12 months of encounters, HbA1c and glucose labs,
+  vitals, comorbidity clusters (hypertension, obesity), about 12% diabetes prevalence, 1% entry errors.
+seed: 42
+rows: 5000                       # rows of the main fact table (encounters)
+max_repairs: 3
+max_calls: 8                     # cost guards
+max_total_tokens: 300000
+validation:
+  pk: [patients=patient_id, encounters=encounter_id, labs=lab_id]
+  fk: [encounters.patient_id=patients.patient_id, labs.encounter_id=encounters.encounter_id]
+  range: ["labs.value=0:"]

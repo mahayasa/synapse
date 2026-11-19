@@ -1,0 +1,6 @@
+# Core dependencies (tested with numpy 2.2.6, pandas 2.3.3, scipy 1.15.3, scikit-learn 1.7.0, PyYAML)
+numpy
+pandas
+scipy
+scikit-learn
+pyyaml
