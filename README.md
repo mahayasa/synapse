@@ -20,7 +20,7 @@ Comparing synthetic-data generators fairly is hard: they need the same schema, t
 
 ## Quick start
 
-Requirements: Python 3.11+ (developed and tested on Python 3.13, Windows).
+Requirements: Python 3.11+ (developed on Python 3.13 on Windows; CI also runs Python 3.11 and 3.13 on Linux).
 
 ```bash
 git clone https://github.com/mahayasa/synapse.git
@@ -129,7 +129,7 @@ synapse/
 
 ## Limitations
 
-- Tested only on Windows with Python 3.13, with generator-made data and fake LLM clients. No real LLM calls, no real public datasets, no GPU timing yet.
+- Offline tests pass in CI on Linux (Python 3.11, 3.13) and Windows (3.13) without sdv. SDV training was tested only on Windows with Python 3.13, using generator-made data. No real LLM calls, no real public datasets, no GPU timing yet.
 - The evaluator targets flat and relational tables. Metrics for gene-by-sample matrices and sensor time series are not implemented.
 - Classical models are not byte-reproducible; saved models are pickles.
 - The privacy score is a distance heuristic, not a formal guarantee.

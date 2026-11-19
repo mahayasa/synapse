@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Python 3.11 or newer (developed and tested on Python 3.13 on Windows).
+- Python 3.11 or newer (developed on Python 3.13 on Windows; CI runs Python 3.11 and 3.13 on Linux and 3.13 on Windows).
 - Core packages: `numpy`, `pandas`, `scipy`, `scikit-learn`, `pyyaml` (`pip install -r requirements.txt`).
 - Optional, per backend: `anthropic`, `openai`, `sdv` (`pip install -r requirements-optional.txt`). `sdv` installs PyTorch and is a large download.
 

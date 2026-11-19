@@ -17,6 +17,6 @@ First public version.
 - 26 offline unit tests; worked diabetes classification example.
 
 ### Known limitations
-- Tested on Windows with Python 3.13 only; no real LLM calls or real datasets yet.
+- Offline tests pass in CI on Linux (Python 3.11, 3.13) and Windows (3.13); SDV training was tested only on Windows with Python 3.13; no real LLM calls or real datasets yet.
 - No evaluator metrics yet for gene-by-sample matrices or time series.
 - GAN training is not byte-reproducible; saved models are pickles.

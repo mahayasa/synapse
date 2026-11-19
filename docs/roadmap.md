@@ -4,7 +4,7 @@
 
 - Real LLM calls with any provider (all LLM behaviour is tested with fake clients).
 - Real public datasets (all evaluation so far used generator-made data).
-- Platforms other than Windows with Python 3.13; GPU training and timing on larger data.
+- SDV training outside Windows (CI covers the offline tests without sdv on Linux and Windows, not SDV training); GPU training and timing on larger data.
 
 ## Planned
 
