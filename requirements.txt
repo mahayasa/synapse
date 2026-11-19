@@ -1,4 +1,6 @@
-# Core dependencies (tested with numpy 2.2.6, pandas 2.3.3, scipy 1.15.3, scikit-learn 1.7.0, PyYAML)
+# Core dependencies. No upper bounds are pinned.
+# Tested with: numpy 2.2.6, pandas 2.3.3, scipy 1.15.3, scikit-learn 1.7.0 (local, Windows, Python 3.13)
+#              numpy 2.4.6, pandas 3.1.1, scipy 1.17.1, scikit-learn 1.9.1 (CI, latest releases)
 numpy
 pandas
 scipy

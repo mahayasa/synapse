@@ -10,6 +10,9 @@
 - Flags and small integer codes are summarised as category mixes (class balance is visible).
 - `docs/example-data.md`; `openpyxl` as an optional dependency; 12 new offline tests (38 in total).
 
+### Fixed
+- Key detection in `profile_data.py` assumed the `object` dtype and found no keys under pandas 3, which uses a dedicated string dtype. Found by CI; the suite now passes on pandas 2.3.3 and 3.1.1.
+
 ### Known limitations
 - Tested only with constructed samples, not real datasets; legacy `.xls` is not supported.
 

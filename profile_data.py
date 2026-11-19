@@ -53,7 +53,8 @@ def key_columns(df: pd.DataFrame) -> list[str]:
         return []
     return [c for c in df.columns
             if df[c].notna().all() and df[c].is_unique
-            and (pd.api.types.is_integer_dtype(df[c]) or df[c].dtype == object)]
+            and (pd.api.types.is_integer_dtype(df[c]) or pd.api.types.is_string_dtype(df[c])
+                 or pd.api.types.is_object_dtype(df[c]))]      # pandas 3 uses a dedicated string dtype
 
 
 def fk_candidates(tables: dict[str, pd.DataFrame]) -> list[str]:
