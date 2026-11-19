@@ -1,6 +1,6 @@
 # Synapse
 
-**Synthetic data for health and biomedical research.** Synapse is a config-driven agent skill and Python toolkit that generates, trains, validates and evaluates synthetic datasets, and lets you swap the generator between rule-based code, large language models and classical machine-learning models (CTGAN, TVAE, Gaussian copula) so they can be benchmarked against each other.
+**Synthetic data agent for health and biomedical research (EHR, RNA-seq, wearables).** Synapse is a config-driven agent skill and Python toolkit that generates, trains, validates and evaluates synthetic datasets, and lets you swap the generator between rule-based code, large language models and classical machine-learning models (CTGAN, TVAE, Gaussian copula) so they can be benchmarked against each other.
 
 > **Status: research prototype (v0.1.0).** Everything here is tested offline with fake LLM clients and generator-made data. Real LLM calls and real clinical, genomic or wearable datasets have not been tested yet. Synthetic data produced by Synapse is **not** real patient data and must not be used for medical or biological conclusions.
 
