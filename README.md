@@ -23,7 +23,7 @@ Comparing synthetic-data generators fairly is hard: they need the same schema, t
 Requirements: Python 3.11+ (developed and tested on Python 3.13, Windows).
 
 ```bash
-git clone https://github.com/<your-username>/synapse.git
+git clone https://github.com/mahayasa/synapse.git
 cd synapse
 pip install -r requirements.txt            # numpy, pandas, scipy, scikit-learn, pyyaml
 # optional, only for the backends you use:
@@ -68,7 +68,7 @@ A complete worked example (a small diabetes classification table) is in [example
 ## Use as a Claude skill
 
 ```bash
-git clone https://github.com/<your-username>/synapse.git ~/.claude/skills/synapse
+git clone https://github.com/mahayasa/synapse.git ~/.claude/skills/synapse
 ```
 
 Start a new Claude Code session and run, for example, `/synapse generate a small diabetes classification table`. Skills load at session start. See [docs/getting-started.md](docs/getting-started.md).

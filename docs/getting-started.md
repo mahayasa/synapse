@@ -9,7 +9,7 @@
 ## Install
 
 ```bash
-git clone https://github.com/<your-username>/synapse.git
+git clone https://github.com/mahayasa/synapse.git
 cd synapse
 python -m venv .venv
 # Windows PowerShell: .venv\Scripts\Activate.ps1      bash: source .venv/bin/activate
@@ -74,7 +74,7 @@ See [evaluation.md](evaluation.md).
 Place the repository at `~/.claude/skills/synapse/` (or `.claude/skills/synapse/` inside a project):
 
 ```bash
-git clone https://github.com/<your-username>/synapse.git ~/.claude/skills/synapse
+git clone https://github.com/mahayasa/synapse.git ~/.claude/skills/synapse
 ```
 
 Claude loads skills when a session starts, so start a new session. Then either type `/synapse` followed by a request, or ask in plain language, for example "generate a small diabetes classification table". Claude follows the process in `SKILL.md`: it loads the matching domain profile, designs the schema, generates, validates, and reports.
